@@ -1,0 +1,138 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Progress Bar com ASP.NET MVC e AJAX | DZF Web</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/font.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- gallery that comes before the header--><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a href="/" class="sidebar-nav-item active">Inicio</a><a href="/contato" class="sidebar-nav-item">Contato</a><a href="/sobre" class="sidebar-nav-item">Sobre</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-link" href="/tags/ajax/">ajax</a><a class="post-tag-link" href="/tags/asp-net/">asp.net</a><a class="post-tag-link" href="/tags/barra-de-progresso/">barra de progresso</a><a class="post-tag-link" href="/tags/jquery/">jquery</a><a class="post-tag-link" href="/tags/mvc/">mvc</a><a class="post-tag-link" href="/tags/net/">net</a><a class="post-tag-link" href="/tags/progressbar/">progressbar</a></div><div class="post-time">30-03-2015</div></div></div><div class="container post-header"><h1>Progress Bar com ASP.NET MVC e AJAX</h1></div><div class="container post-content"><p>Hoje vou compartilhar para vocês uma maneira simples de se fazer um Progress Bar (barra de progresso) em <strong>ASP.NET MVC</strong> utilizando <strong>jQuery</strong> e <strong>Ajax</strong>. Essa é uma ótima dica para se levar em conta a experiência do usuário com sua aplicação, em situações em que ocorrem uma requisição ao Controller que demande um tempo, ocasionando uma confusão por parte do usuário em saber o que está acontecendo, se ocorreu o resultado esperado, etc.</p>
+<p><a href="http://www.dzfweb.com.br/wp-content/uploads/2015/03/progressbar.jpg"><img src="http://www.dzfweb.com.br/wp-content/uploads/2015/03/progressbar.jpg" alt="progressbar"></a><a id="more"></a></p>
+<p>A lógica a ser utilizada é bem simples. Basicamente, teremos um objeto estático no Controller, responsável por armazenar a informação do processo em execução, como por exemplo Etapa atual e Descrição,e um Timer no front acessando o valor desse objeto estático e exibindo para o usuário.</p>
+<p>Para a demonstração do código a seguir, foi utilizado as seguintes tecnologias:</p>
+<ul>
+<li>ASP.NET MVC 5</li>
+<li>jQuery 1.11.2</li>
+<li>jQuery.UI 1.11.4<br>&nbsp;</li>
+</ul>
+<p>Imaginemos que temos um método no nosso Controller com nome <em>FazendoAlgo</em>.</p>
+<pre><code>public JsonResult FazendoAlgo()
+{
+
+for (int i = 1; i &lt; 100; i++)
+{
+System.Threading.Thread.Sleep(1000);
+}
+
+return Json(&quot;Feito algo com sucesso&quot;, JsonRequestBehavior.AllowGet);
+
+}
+`&lt;/pre&gt;
+Em nossa View, temos um botão que chama o método _FazendoAlgo_ atravéz uma requisição Ajax, e exiba a mensagem de retorno apenas ao termino do procedimento.
+&lt;pre class=&quot;prettyprint&quot;&gt;`
+$.ajax({
+            url: &quot;/Controller/FazendoAlgo&quot;,
+            type: &quot;GET&quot;,
+            dataType: &quot;JSON&quot;,
+            success: function (retorno) {
+                alert(retorno);
+            }
+        });
+`&lt;/pre&gt;
+Neste caso, o método _FazendoAlgo _somente retornará após 10 segundos. O usuário terá um _delay_ de 10 segundos entre uma solicitação e a resposta, o que dependendo do caso pode ser crucial para seu negócio, fazendo com que ele feche a janela e vá embora. Claro que não se pode generalizar, mas se pensando em experiência do usuário, você deve mantê-lo informado do que está acontecendo.
+
+Para isso, iremos usar o [Progressbar ](https://jqueryui.com/progressbar/)do jQuery e faremos algumas pequenas alterações em nosso _Controller_ para comunicar o _progressbar _do andamento da solicitação. Crie uma nova div com o id _progressbar_ no local da sua pagina onde deseja exibir.
+
+&lt;pre class=&quot;prettyprint&quot;&gt;`
+&lt;div id=&quot;progressbar&gt;&lt; /div&gt;
+`&lt;/pre&gt;
+
+Crie uma classe denominada _Progresso_ na pasta _Models_ do seu projeto, ou onde achar mais adequado.
+&lt;pre class=&quot;prettyprint&quot;&gt;`
+public class Progresso
+        {
+            public int Etapa { get; set; }
+            public string Descricao { get; set; }
+        }
+`&lt;/pre&gt;
+Agora defina um novo _Progresso _privado e estatico dentro do seu _Controller_
+&lt;pre class=&quot;prettyprint&quot;&gt;`
+private static Progresso Progresso = new Model.Progresso();
+`&lt;/pre&gt;
+&amp;nbsp;
+
+A lógica do procedimento é simples. O que faremos alterar os valores do _Progresso_ dentro de cada nó em nosso método _FazendoAlgo, ficando da seguinte maneira._
+
+&amp;nbsp;
+&lt;pre class=&quot;prettyprint&quot;&gt;`
+public JsonResult FazendoAlgo()
+        {
+            for (int i = 1; i &lt; 100; i++)
+            {
+                Progresso.Etapa = i;
+                Progresso.Descricao = &quot;Realizando etapa n° &quot; + i;
+                System.Threading.Thread.Sleep(1000);
+            }
+            Progresso.Etapa = 100;
+            Progresso.Descricao = &quot;Concluido&quot;;
+            return Json(&quot;Feito algo com sucesso&quot;, JsonRequestBehavior.AllowGet);
+        }
+`&lt;/pre&gt;
+Basta agora acessarmos essa informação do _Progresso _pela _view_  e exibir para o usuário. Para isso, criaremos um novo [_Interval_](http://www.w3schools.com/jsref/met_win_setinterval.asp) que terá a responsabilidade de acessar um novo método no _Controller_, pegar o valor do _Progresso_ e exibir para o usuário com o _Progressbar._
+
+Crie um novo método _GetProgress _no _Controller_ com a seguinte instrução
+&lt;pre class=&quot;prettyprint&quot;&gt;`
+public JsonResult GetProgress()
+        {
+            return Json(Progresso, JsonRequestBehavior.AllowGet);
+        }
+`&lt;/pre&gt;
+Agora crie uma nova função JavaScript na sua _view _para acessar o valor do _Progresso_
+
+&amp;nbsp;
+&lt;pre class=&quot;prettyprint&quot;&gt;`
+function GetProgress(timer) {
+            $.ajax({
+                type: &apos;GET&apos;,
+                url: &apos;/Controller/GetProgress&apos;,
+                datatype: &apos;json&apos;,
+                success: function (progresso) {
+                    if (progresso.Etapa != 100) {
+                        $(&quot;#progressbar&quot;).html(progresso.Descricao);
+                        $(&quot;#progressbar&quot;).progressbar({
+                            value: (progresso.Etapa)
+                        });
+                    }
+                    else {   
+                        clearInterval(timer);
+                    }
+                }
+            });
+        }
+`&lt;/pre&gt;
+Agora temos que alterar a chamada _Ajax_ do método _FazendoAlgo_ para acionar o nosso _Interval_ que por fim irá nos trazer o resultado do progresso, ficando da seguinte maneira
+
+&amp;nbsp;
+&lt;pre class=&quot;prettyprint&quot;&gt;`
+$.ajax({
+            url: &quot;/Home/FazendoAlgo&quot;,
+            type: &quot;GET&quot;,
+            dataType: &quot;JSON&quot;,
+            success: function (retorno) {
+                timer = setInterval(function () {
+                    GetProgress(timer);
+                }, 2000);
+            }
+        });
+</code></pre><p><strong>Pronto!
+</strong></p>
+<p>Se você realizou todas essas etapas, seu _Progressbar _estará funcionando e exibindo etapa por etapa do que esta sendo feito no _Controller.  _O _Interval  _está definido para atualizar o _Progressbar _a cada 2 segundos. Quando o progresso atingir o valor de 100, o Interval será parado.</p>
+<p>Espero que esse artigo tenha sido útil, até a próxima.</p>
+</div></div><div class="post-main post-comment"><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'dzfweb';
+var disqus_identifier = '30/03/2015/progress-bar-com-asp-net-mvc-e-ajax/';
+var disqus_title = 'Progress Bar com ASP.NET MVC e AJAX';
+var disqus_url = 'http://www.dzfweb.com.br/30/03/2015/progress-bar-com-asp-net-mvc-e-ajax/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>

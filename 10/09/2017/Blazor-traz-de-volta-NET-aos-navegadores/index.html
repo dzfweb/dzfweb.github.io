@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Blazor traz de volta .NET aos navegadores | DZF Web</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/font.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- gallery that comes before the header--><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a href="/" class="sidebar-nav-item active">Inicio</a><a href="/contato" class="sidebar-nav-item">Contato</a><a href="/sobre" class="sidebar-nav-item">Sobre</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-link" href="/tags/net/">.net</a><a class="post-tag-link" href="/tags/webassembly/">webassembly</a></div><div class="post-time">10-09-2017</div></div></div><div class="container post-header"><h1>Blazor traz de volta .NET aos navegadores</h1></div><div class="container post-content"><h2 id="Blazor-traz-de-volta-NET-aos-navegadores"><a href="#Blazor-traz-de-volta-NET-aos-navegadores" class="headerlink" title="Blazor traz de volta .NET aos navegadores"></a>Blazor traz de volta .NET aos navegadores</h2><p>O Blazor é um experimento criado por Steve Sanderson que torna possível a utilização de .NET aos navegadores usando WebAssembly e DotNetAnywhere. Não se trata de um Framework completo como Flash ou Silverlight, mas sim um teste para verificar o que é possível fazer com tal tecnologia.</p>
+<p>O Blazor é um experimento criado por Steve Sanderson que torna possível a utilização de .NET aos navegadores usando WebAssembly e DotNetAnywhere. Não se trata de um Framework completo como Flash ou Silverlight, mas sim um teste para verificar o que é possível fazer com tal tecnologia.</p>
+<p>O WebAssembly se descreve como um padrão para “um ambiente de execução seguro, testável, e que pode ser implementado até mesmo em máquinas virtuais JavaScript”. Embora ele tenha uma melhor performance em navegadores que o oferecem suporte nativo, o WebAssembly pode ser interpretado por navegadores antigos através de conversores e asm.js.</p>
+<p>Atualmente, o WebAssembly foi projetado para oferecer suporte a aplicações escritas em C e C++, atuando como um compilador backend para clang/LLVM. Já para converter C em C#, o Blazor utiliza o DotNetAnywhere, criado por Chris Bacon, que nada mais é que um interpretador do MSIL do .NET Framework. O projeto DotNetAnywhere foi encerrado há cerca de 6 anos atrás.</p>
+<p>O Blazor faz as seguintes alterações no DotNetAnywhere:</p>
+<pre><code>Suporte ao desenvolvimento com Emscripten
+Suporte a chamadas JavaScript através .NET (e vice-versa)
+Adiciona recursos primitivos de interoperabilidade (ex: GCGandle)
+Resolve alguns bugs
+Suporte para carregar recursos do .NET Core-style
+</code></pre><p>Aplicações com Blazor são construídas utilizando templates Razor, que são executados no navegador e não no servidor. De acordo com a documentação, um simples “Hello world” requer 300KB de download. Isso inclui tudo o que é necessário, sendo:</p>
+<pre><code>.NET runtime pequeno e leve
+Core libs
+Código da aplicação
+Códigos encapsulados necessários para execução do código WebAssembly
+</code></pre><p>Nenhum esforço foi feito para remover os códigos desnecessários, então ainda é possível reduzir o tamanho ainda mais.</p>
+<p>Para ver Blazor em ação, assista o vídeo da apresentação realizada na conferência NDC “Web Apps can’t really do <em>that</em>, can they? - Steve Sanderson” (Aplicações Web realmente não podem fazer isso, não é?).</p>
+<p><em>Artigo originalmente publicado no InfoQ</em><br><em><a href="https://www.infoq.com/br/news/2017/09/Blazor" target="_blank" rel="external">https://www.infoq.com/br/news/2017/09/Blazor</a></em></p>
+</div></div><div class="post-main post-comment"><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'dzfweb';
+var disqus_identifier = '10/09/2017/Blazor-traz-de-volta-NET-aos-navegadores/';
+var disqus_title = 'Blazor traz de volta .NET aos navegadores';
+var disqus_url = 'http://www.dzfweb.com.br/10/09/2017/Blazor-traz-de-volta-NET-aos-navegadores/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>O Código Fonte do seu Projeto .NET está protegido? | DZF Web</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/font.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- gallery that comes before the header--><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a href="/" class="sidebar-nav-item active">Inicio</a><a href="/contato" class="sidebar-nav-item">Contato</a><a href="/sobre" class="sidebar-nav-item">Sobre</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-link" href="/tags/Dotfuscator/">Dotfuscator</a><a class="post-tag-link" href="/tags/codigo/">código</a><a class="post-tag-link" href="/tags/net/">net</a><a class="post-tag-link" href="/tags/programador/">programador</a><a class="post-tag-link" href="/tags/proteger/">proteger</a><a class="post-tag-link" href="/tags/seguranca/">segurança</a></div><div class="post-time">01-12-2014</div></div></div><div class="container post-header"><h1>O Código Fonte do seu Projeto .NET está protegido?</h1></div><div class="container post-content"><p><img src="http://blog.dzfweb.com.br/wp-content/uploads/2014/12/net-codigo-protegido-300x191.jpg" alt="Como proteger o código fonte .NET"></p>
+<p>Provavelmente você Desenvolvedor já deve ter se perguntado: “Será que meu código está protegido?”. Eu me deparei com esse questionamento ao termino de um sistema que desenvolvi em .NET e estava preste a por em produção, e como todo desenvolvedor precavido, iniciei uma pesquisa sob metodologias para proteger meu Sistema e, consequentemente, o código-fonte do Sistema.</p>
+<p>Bom, esse estudo me trouxe uma insegurança quanto a Tecnologia .NET, que para mim até então, era considerada muito segura. Pasmem, <strong>é possível extrair o código-fonte de qualquer projeto .NET</strong> (C#, VB, etc). Neste artigo vou compartilhar com vocês como é possível fazer isso e como proteger o seu código e dificultar um pouco essa prática.</p>
+<a id="more"></a>
+<p><strong>Entendendo as DLL e Executáveis .NET</strong></p>
+<p>De forma resumida, quando você compila um código em .NET, este não é convertido para linguagem de maquina. Todas linguagens .NET são convertidas para <strong>MSIL </strong>(<strong>Microsoft Intermediate Language) . </strong>A MSIL é convertida em tempo de execução. Este processo oferece algumas vantagens como a consulta de Assemblys dinamicamente e seus métodos. Porém, graças a este processo, também é possível através de engenharia reversa, acessar todo o algoritmo do código, seus métodos, variáveis, etc.</p>
+<p><strong>Descompiladores .NET</strong></p>
+<p>A Microsoft possui uma espécie de Descompilador MSIL onde é possível acessar os métodos de qualquer assembly .NET (<a href="http://msdn.microsoft.com/pt-br/library/cc580668" target="_blank" rel="external">Saiba mais clicando aqui</a>) entretanto, existe alguns descompiladores mais utilizados que oferecem algumas funções além como por exemplo extrair todo o código fonte da Assembly, inclusive o .CSPROJ.</p>
+<p>Estou falando do <strong>Reflector </strong>(<a href="www.aisto.com/roeder/dotnet">baixe aqui</a>) e do plugin<strong> File Disasembler </strong>(<a href="http://www.denisbauer.com/NETTools/FileDisassembler.aspx" target="_blank" rel="external">baixe aqui</a>).  Você verá a seguir como os dois juntos conseguem extrair o código fonte de DLL ou Executáveis .NET.</p>
+<p>Esta é a Interface do <strong>Reflector</strong>. Logo ao abrir o programa, ele carrega por padrão as Assembly da Microsoft, onde já é possível navegar pelos métodos. Até então, em espantos, pois com o Visual Studio já é possível fazer isto.</p>
+<p><a href="http://www.dzfweb.com.br/wp-content/uploads/2014/12/1.png"><img src="http://blog.dzfweb.com.br/wp-content/uploads/2014/12/1-1024x823.png" alt="Reflector"></a></p>
+<p>Criei um novo projeto Windows Form C# bem simples para usar no exemplo. Possui 1 Form e um método. No programa <strong>Reflector &gt; Open Assembly </strong>selecionei o executável que fiz, e então o programa descopbila o MSIL do programa e exibe os métodos.</p>
+<p><a href="http://www.dzfweb.com.br/wp-content/uploads/2014/12/11.png"><img src="http://blog.dzfweb.com.br/wp-content/uploads/2014/12/11-1024x817.png" alt="Reflector"></a></p>
+<p>Agora vou utilizar o Plugin <strong>File Disasembler </strong>selecionando a no menu <strong>Tools &gt; File Disasembler</strong>, na janela que se abre eu informo o tipo do Projeto como Windows Form e o caminho para a saída dos arquivos descompilados. O Plugin então extrai todo o código fonte da Assembly selecionada.</p>
+<p><a href="http://www.dzfweb.com.br/wp-content/uploads/2014/12/12.png"><img src="http://blog.dzfweb.com.br/wp-content/uploads/2014/12/12-1024x791.png" alt="Reflector"></a></p>
+<p>E então após este simples processo e com acesso ao código fonte da Assembly, posso abrir no Visual Studio sem nenhum problema.</p>
+<p><a href="http://www.dzfweb.com.br/wp-content/uploads/2014/12/13.png"><img src="http://blog.dzfweb.com.br/wp-content/uploads/2014/12/13-1024x805.png" alt="Reflector"></a></p>
+<hr>
+<p>Ficou espantado? Pois é eu também. E por conta disso parti para outra pesquisa.</p>
+<p><strong>Como Proteger Códigos .NET com Dotfuscator</strong></p>
+<p>A partir da versão 2012 do Visual Studio, a extensão <strong>Dotfuscator </strong>da empresa PreEmptive, vem por padrão instalada e é possível acessar em <strong>Tools &gt;**</strong> PreEmptive Dotfuscator and Analitics **.</p>
+<p>1- Ao abrir a Interface do DotFuscator, inicie um novo projeto <strong>File &gt; New Project.</strong></p>
+<p>2- Clique em <strong>Inputs </strong>e ao lado, adicione as Assembly ou Executáveis que deseja ofuscar.<br>(Ex: ..ProjetoBinMeuProjeto.exe)</p>
+<p>3- Clique em <strong>Build &gt; Build Project</strong>. Este processo irá criar uma pasta no diretorio do seu Projeto selecionado com o nome Dotfuscated e o Executável ou DLL com o MSIL ofuscado.</p>
+<p>&nbsp;</p>
+<p><img src="http://blog.dzfweb.com.br/wp-content/uploads/2014/12/14-300x223.png" alt="1"><br>Pronto, o seu código foi protegido e não é possivel descompilar. Basta agora distribuir o executável ofuscado para seus clientes. Caso tente fazer isso no <strong>Reflector</strong>, o resultado será um arquivo encriptografado e ilegível.</p>
+<p>&nbsp;</p>
+</div></div><div class="post-main post-comment"><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'dzfweb';
+var disqus_identifier = '01/12/2014/o-codigo-fonte-do-seu-projeto-net-esta-protegido/';
+var disqus_title = 'O Código Fonte do seu Projeto .NET está protegido?';
+var disqus_url = 'http://www.dzfweb.com.br/01/12/2014/o-codigo-fonte-do-seu-projeto-net-esta-protegido/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>

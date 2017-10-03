@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Convertendo Query SQL para LINQ | DZF Web</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/font.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- gallery that comes before the header--><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a href="/" class="sidebar-nav-item active">Inicio</a><a href="/contato" class="sidebar-nav-item">Contato</a><a href="/sobre" class="sidebar-nav-item">Sobre</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-link" href="/tags/ajuda/">ajuda</a><a class="post-tag-link" href="/tags/c/">c#</a><a class="post-tag-link" href="/tags/convert/">convert</a><a class="post-tag-link" href="/tags/convertendo/">convertendo</a><a class="post-tag-link" href="/tags/converter/">converter</a><a class="post-tag-link" href="/tags/linq/">linq</a><a class="post-tag-link" href="/tags/microsoft/">microsoft</a><a class="post-tag-link" href="/tags/net/">net</a><a class="post-tag-link" href="/tags/sql/">sql</a><a class="post-tag-link" href="/tags/to/">to</a><a class="post-tag-link" href="/tags/vb/">vb</a></div><div class="post-time">24-09-2014</div></div></div><div class="container post-header"><h1>Convertendo Query SQL para LINQ</h1></div><div class="container post-content"><p>Hoje vou compartilhar com vocês um poderoso utilitário para desenvolvedores .NET, que promete - e cumpre - converter, ao toque de um botão, gigantescas Query SQL em LINQ ou o contrário.</p>
+<p>O nome do milagroso programa é o <a href="http://www.sqltolinq.com/" title="LINQER" target="_blank" rel="external">LINQER</a>, um software pago, muito intuitivo e fácil de usar. Ele é, também, uma espécie de SGBD (Sistema de Gerenciamento de Banco de Dados) apenas para consultas, por exemplo, como ele você pode executar queryes tanto SQL como LINQ e ver em tela o resultado que esta traz, sem a necessidade de compilar o projeto, e debugar.</p>
+<a id="more"></a>
+<p><a href="http://www.dzfweb.com.br/downloads/linqer.3.0.rar" title="Link para Download">Link para Download</a></p>
+<p><strong>Requisitos</strong></p>
+<ul>
+<li>Microsoft .NET Framework 3.5 (ou superior)</li>
+<li>Microsoft Visual Studio 2010 (ou superior)</li>
+<li>Projeto em .NET 3.5 (ou superior) utilizando algum ORM Framework (Entity Framework, Nhibernate, etc)</li>
+</ul>
+<p><strong>Tutorial de Uso</strong></p>
+<p>1- Após extrair o Linqer para o seu computador, abra-o e vá ao menu “Tools” &gt; “Linqer Connections”.<br>2- Clique em “Add”.</p>
+<p><a href="http://www.dzfweb.com.br/wp-content/uploads/2014/09/sql-to-linq1.png"><img src="http://www.dzfweb.com.br/wp-content/uploads/2014/09/sql-to-linq1.png" alt="sql-to-linq1"></a>3- Em “Connection Name” você coloca o nome da sua conexão, pode ser qualquer um.<br>4- Em “Connection String” você coloca a string de conex├úo a sua base de dados. Você pode copiar esse valor do seu web.config, ou clicar em “…” e setar manualmente, informando os dados de acesso na tela que abrir.<br>5- Em “Language” você informa se seu projeto é em C# ou VB.<br>6- Em “Model” você informa o tipo de ORM utilizado no projeto: Linq to SQL (para projetos com arquivo .dbml) e Linq to Entities (para projetos com arquivo .edmx)<br>7- Feito isso, você deve informar os respectivos arquivos ORM (.dbml ou .edmx e designer.cs) do seu projeto.<br>8- O campo “Data Context Variable” serve para você informar o nome da variável de persistência ao banco que será utilizada quando converter a query SQL para LINQ<br><a href="http://www.dzfweb.com.br/wp-content/uploads/2014/09/sql-to-linq2.png"><img src="http://www.dzfweb.com.br/wp-content/uploads/2014/09/sql-to-linq2.png" alt="sql-to-linq2"></a>9- Clique me OK, para gravar a configuração, e volte a tela inicial do programa. No combo “Connection” é possível visualizar esta configuração de conexão criada anteriormente, deixe ela selecionada.<br>10- Existem 2 grids na tela. O do lado esquerdo é onde você irá colocar a query em SQL. O do lado direito é onde você irá colocar a query em LINQ.</p>
+<p><a href="http://www.dzfweb.com.br/wp-content/uploads/2014/09/sql-to-linq3.png"><img src="http://www.dzfweb.com.br/wp-content/uploads/2014/09/sql-to-linq3.png" alt="sql-to-linq3"></a></p>
+<p>11- Para converter, escreva a query que deseja converter, e clique no botão “Convert” (icone de seta verde). Se tudo estiver correto, você poderá ver a query convertida em um passe de mágica.</p>
+<p>&nbsp;</p>
+<p>Simples e útil, este programa passou a ser indispensável em minha rotina de trabalho, espero que possa ajudar outras pessoas também.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div></div><div class="post-main post-comment"><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'dzfweb';
+var disqus_identifier = '24/09/2014/convertendo-query-sql-para-linq/';
+var disqus_title = 'Convertendo Query SQL para LINQ';
+var disqus_url = 'http://www.dzfweb.com.br/24/09/2014/convertendo-query-sql-para-linq/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>
