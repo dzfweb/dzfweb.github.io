@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>O Código Fonte do seu Projeto .NET está protegido? | DZF Web Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Provavelmente você Desenvolvedor já deve ter se perguntado: “Será que meu código está protegido?”. Eu me deparei com esse questionamento ao termino de um sistema que desenvolvi em .NET e estava preste">
+<meta property="og:type" content="article">
+<meta property="og:title" content="O Código Fonte do seu Projeto .NET está protegido?">
+<meta property="og:url" content="http://www.dzfweb.com.br/2013/12/01/O-Codigo-Fonte-do-seu-Projeto-NET-esta-protegido/index.html">
+<meta property="og:site_name" content="DZF Web Blog">
+<meta property="og:description" content="Provavelmente você Desenvolvedor já deve ter se perguntado: “Será que meu código está protegido?”. Eu me deparei com esse questionamento ao termino de um sistema que desenvolvi em .NET e estava preste">
+<meta property="og:locale" content="pt_BR">
+<meta property="article:published_time" content="2013-12-01T17:07:04.000Z">
+<meta property="article:modified_time" content="2023-01-28T20:23:59.056Z">
+<meta property="article:author" content="Douglas Zanco Franco">
+<meta property="article:tag" content="Segurança .NET">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="DZF Web Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">DZF Web Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Douglas Zanco Franco - Web Site</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.dzfweb.com.br"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-O-Codigo-Fonte-do-seu-Projeto-NET-esta-protegido" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2013/12/01/O-Codigo-Fonte-do-seu-Projeto-NET-esta-protegido/" class="article-date">
+  <time class="dt-published" datetime="2013-12-01T17:07:04.000Z" itemprop="datePublished">2013-12-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      O Código Fonte do seu Projeto .NET está protegido?
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Provavelmente você Desenvolvedor já deve ter se perguntado: “Será que meu código está protegido?”. Eu me deparei com esse questionamento ao termino de um sistema que desenvolvi em .NET e estava preste a por em produção, e como todo desenvolvedor precavido, iniciei uma pesquisa sob metodologias para proteger meu Sistema e, consequentemente, o código-fonte do Sistema.</p>
+<span id="more"></span>
+
+
+<p>Bom, esse estudo me trouxe uma insegurança quanto a Tecnologia .NET, que para mim até então, era considerada muito segura. Pasmem, é possível extrair o código-fonte de qualquer projeto .NET (C#, VB, etc). Neste artigo vou compartilhar com vocês como é possível fazer isso e como proteger o seu código e dificultar um pouco essa prática.</p>
+<h2 id="Entendendo-as-DLL-e-Executaveis-NET"><a href="#Entendendo-as-DLL-e-Executaveis-NET" class="headerlink" title="Entendendo as DLL e Executáveis .NET"></a>Entendendo as DLL e Executáveis .NET</h2><p>De forma resumida, quando você compila um código em .NET, este não é convertido para linguagem de maquina. Todas linguagens .NET são convertidas para MSIL (Microsoft Intermediate Language) . A MSIL é convertida em tempo de execução. Este processo oferece algumas vantagens como a consulta de Assemblys dinamicamente e seus métodos. Porém, graças a este processo, também é possível através de engenharia reversa, acessar todo o algoritmo do código, seus métodos, variáveis, etc.</p>
+<h2 id="Descompiladores-NET"><a href="#Descompiladores-NET" class="headerlink" title="Descompiladores .NET"></a>Descompiladores .NET</h2><p>A Microsoft possui uma espécie de Descompilador MSIL onde é possível acessar os métodos de qualquer assembly .NET (Saiba mais clicando aqui) entretanto, existe alguns descompiladores mais utilizados que oferecem algumas funções além como por exemplo extrair todo o código fonte da Assembly, inclusive o .CSPROJ.</p>
+<p>Estou falando do Reflector (baixe aqui) e do plugin File Disasembler (baixe aqui). Você verá a seguir como os dois juntos conseguem extrair o código fonte de DLL ou Executáveis .NET.</p>
+<p>Esta é a Interface do Reflector. Logo ao abrir o programa, ele carrega por padrão as Assembly da Microsoft, onde já é possível navegar pelos métodos. Até então, em espantos, pois com o Visual Studio já é possível fazer isto.</p>
+<p>Reflector</p>
+<p>Criei um novo projeto Windows Form C# bem simples para usar no exemplo. Possui 1 Form e um método. No programa Reflector &gt; Open Assembly selecionei o executável que fiz, e então o programa descopbila o MSIL do programa e exibe os métodos.</p>
+<p>Reflector</p>
+<p>Agora vou utilizar o Plugin File Disasembler selecionando a no menu Tools &gt; File Disasembler, na janela que se abre eu informo o tipo do Projeto como Windows Form e o caminho para a saída dos arquivos descompilados. O Plugin então extrai todo o código fonte da Assembly selecionada.</p>
+<p>Reflector</p>
+<p>E então após este simples processo e com acesso ao código fonte da Assembly, posso abrir no Visual Studio sem nenhum problema.</p>
+<p>Reflector</p>
+<p>Ficou espantado? Pois é eu também. E por conta disso parti para outra pesquisa.</p>
+<h2 id="Como-Proteger-Codigos-NET-com-Dotfuscator"><a href="#Como-Proteger-Codigos-NET-com-Dotfuscator" class="headerlink" title="Como Proteger Códigos .NET com Dotfuscator"></a>Como Proteger Códigos .NET com Dotfuscator</h2><p>A partir da versão 2012 do Visual Studio, a extensão Dotfuscator da empresa PreEmptive, vem por padrão instalada e é possível acessar em Tools &gt;** PreEmptive Dotfuscator and Analitics **.</p>
+<p>1- Ao abrir a Interface do DotFuscator, inicie um novo projeto File &gt; New Project.</p>
+<p>2- Clique em Inputs e ao lado, adicione as Assembly ou Executáveis que deseja ofuscar.<br>(Ex: ..ProjetoBinMeuProjeto.exe)</p>
+<p>3- Clique em Build &gt; Build Project. Este processo irá criar uma pasta no diretorio do seu Projeto selecionado com o nome Dotfuscated e o Executável ou DLL com o MSIL ofuscado.</p>
+<p>1<br>Pronto, o seu código foi protegido e não é possivel descompilar. Basta agora distribuir o executável ofuscado para seus clientes. Caso tente fazer isso no Reflector, o resultado será um arquivo encriptografado e ilegível.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.dzfweb.com.br/2013/12/01/O-Codigo-Fonte-do-seu-Projeto-NET-esta-protegido/" data-id="cldg9ovb70006ecud0t80b8yb" data-title="O Código Fonte do seu Projeto .NET está protegido?" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Seguranca-NET/" rel="tag">Segurança .NET</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/04/25/Desenvolvimento%20Android%20e%20iOS%20com%20.NET%20e%20Visual%20Studio/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Desenvolvimento Android e iOS com .NET e Visual Studio
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Criptografia/" rel="tag">Criptografia</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microservicos-NET-Arquitetura/" rel="tag">Microserviços .NET Arquitetura</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobile-NET-Android-iOS/" rel="tag">Mobile .NET Android iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NativeScript/" rel="tag">NativeScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Premiacao-Hackaton/" rel="tag">Premiação Hackaton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Seguranca-NET/" rel="tag">Segurança .NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blazor-net/" rel="tag">blazor .net</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/treinamento-NativeScript-Angular-Mobile/" rel="tag">treinamento NativeScript Angular+ Mobile</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Criptografia/" style="font-size: 10px;">Criptografia</a> <a href="/tags/Microservicos-NET-Arquitetura/" style="font-size: 10px;">Microserviços .NET Arquitetura</a> <a href="/tags/Mobile-NET-Android-iOS/" style="font-size: 10px;">Mobile .NET Android iOS</a> <a href="/tags/NativeScript/" style="font-size: 10px;">NativeScript</a> <a href="/tags/Premiacao-Hackaton/" style="font-size: 10px;">Premiação Hackaton</a> <a href="/tags/Seguranca-NET/" style="font-size: 10px;">Segurança .NET</a> <a href="/tags/blazor-net/" style="font-size: 10px;">blazor .net</a> <a href="/tags/treinamento-NativeScript-Angular-Mobile/" style="font-size: 10px;">treinamento NativeScript Angular+ Mobile</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">outubro 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">setembro 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">maio 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">abril 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">abril 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">setembro 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">abril 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">dezembro 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/10/04/Microservicos-NET-Arquitetura-para-aplicacoes-em-containers-com-NET/">Microserviços .NET: Arquitetura para aplicações em containers com .NET</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/10/Blazor-traz-de-volta-NET-aos-navegadores/">Blazor traz de volta .NET aos navegadores</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/25/Quao-facil-e-criar-um-plugin-para-NativeScript/">Quão facil é criar um plugin para NativeScript</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/21/Curso-NativeScript-Criando-um-novo-projeto-com-Angular-2/">Curso NativeScript: Criando um novo projeto com Angular 2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/18/Vencedor-da-premiacao-GS1-no-AngelHack-SP-2016/">Vencedor da premiação GS1 no AngelHack SP 2016</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a></br>
+All website licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></br>
+      
+      &copy; 2023 Douglas Zanco Franco<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

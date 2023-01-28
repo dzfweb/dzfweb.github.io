@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Falando um pouco sobre o HASH MD5 no TISS | DZF Web Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Criei essa postagem com o intuito de ajudar outros desenvolvedores que encontraram a mesma dificuldade que eu encontrei durante o processo de desenvolvimento de módulos TISS e validações do HASH MD5.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Falando um pouco sobre o HASH MD5 no TISS">
+<meta property="og:url" content="http://www.dzfweb.com.br/2014/09/22/Falando-um-pouco-sobre-o-HASH-MD5-no-TISS/index.html">
+<meta property="og:site_name" content="DZF Web Blog">
+<meta property="og:description" content="Criei essa postagem com o intuito de ajudar outros desenvolvedores que encontraram a mesma dificuldade que eu encontrei durante o processo de desenvolvimento de módulos TISS e validações do HASH MD5.">
+<meta property="og:locale" content="pt_BR">
+<meta property="article:published_time" content="2014-09-22T18:05:43.000Z">
+<meta property="article:modified_time" content="2023-01-28T20:23:41.819Z">
+<meta property="article:author" content="Douglas Zanco Franco">
+<meta property="article:tag" content="Criptografia">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="DZF Web Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">DZF Web Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Douglas Zanco Franco - Web Site</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.dzfweb.com.br"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Falando-um-pouco-sobre-o-HASH-MD5-no-TISS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2014/09/22/Falando-um-pouco-sobre-o-HASH-MD5-no-TISS/" class="article-date">
+  <time class="dt-published" datetime="2014-09-22T18:05:43.000Z" itemprop="datePublished">2014-09-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Falando um pouco sobre o HASH MD5 no TISS
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Criei essa postagem com o intuito de ajudar outros desenvolvedores que encontraram a mesma dificuldade que eu encontrei durante o processo de desenvolvimento de módulos TISS e validações do HASH MD5.</p>
+<span id="more"></span>
+
+
+<p>Para introduzir ao texto vamos a definições (bem resumida):</p>
+<h2 id="O-que-e-TISS"><a href="#O-que-e-TISS" class="headerlink" title="O que é TISS?"></a>O que é TISS?</h2><p>_A TISS - Troca de Informação em Saúde Suplementar é um padrão para registro e intercâmbio de dados entre operadoras de planos privados de assistência à saúde e prestadores de serviços médico-hospitalares da Agência Nacional de Saúde Suplementar – ANS.<br>_</p>
+<h2 id="O-que-e-Hash-MD5"><a href="#O-que-e-Hash-MD5" class="headerlink" title="O que é Hash MD5?"></a>O que é Hash MD5?</h2><p>O MD5 (Message Digest algorithm 5) é um algoritmo de hash de 128 bits unidirecional desenvolvido pela RSA Data Security, Inc., descrito na RFC 1321, e muito utilizado por softwares com protocolo ponto-a-ponto (P2P, ou Peer-to-Peer, em inglês), a verificação de integridade de arquivos e logins.</p>
+<h2 id="Qual-a-finalidade-do-Hash-MD5-no-TISS"><a href="#Qual-a-finalidade-do-Hash-MD5-no-TISS" class="headerlink" title="Qual a finalidade do Hash MD5 no TISS?"></a>Qual a finalidade do Hash MD5 no TISS?</h2><p>A troca de comunicação entre as operadores e prestadoras nos webservice Tiss são conduzidas em arquivos XML bem estruturados e complexos. O Hash MD5 existe para garantir a integridade do arquivo, uma vez que o conteúdo dos elementos do XML são utilizados para gerar a encriptografia Hash. Isso garante que o arquvio não foi alterado manualmente, pois uma simples troca de caractere ou espaço em branco por exemplo, mudaria completamente o HASH MD5 do arquivo.</p>
+<h2 id="Como-calcular-o-Hash-MD5-para-o-TISS"><a href="#Como-calcular-o-Hash-MD5-para-o-TISS" class="headerlink" title="Como calcular o Hash MD5 para o TISS?"></a>Como calcular o Hash MD5 para o TISS?</h2><p>Concatenar o conteúdo de todos os elementos em uma unica String.<br>Remover espaços em brancos APENAS no inicio e fim do arquivo.<br>Caracteres especiais, acentuações e traços deverão ser mantidos.<br>A codificação MD5 deve ser gerada no padrão UTF-8.</p>
+<p>Exemplo de método para gerar calculo MD5 para o TISS em C# .NET</p>
+<p>Abaixo um método simples que utilizo para gerar o Hash MD5.</p>
+<h2 id="Metodo-para-gerar-HashMD5"><a href="#Metodo-para-gerar-HashMD5" class="headerlink" title="Método para gerar HashMD5"></a>Método para gerar HashMD5</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static string getMD5Hash(string input)</span><br><span class="line">&#123;</span><br><span class="line">    System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create();</span><br><span class="line">    byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(input);</span><br><span class="line">    byte[] hash = md5.ComputeHash(inputBytes);</span><br><span class="line">    System.Text.StringBuilder sb = new System.Text.StringBuilder();</span><br><span class="line">    for (int i = 0; i &lt; hash.Length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        sb.Append(hash[i].ToString(&quot;x2&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">    return sb.ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.dzfweb.com.br/2014/09/22/Falando-um-pouco-sobre-o-HASH-MD5-no-TISS/" data-id="cldg9ovb20003ecudb3qrd0z2" data-title="Falando um pouco sobre o HASH MD5 no TISS" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Criptografia/" rel="tag">Criptografia</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/18/Vencedor-da-premiacao-GS1-no-AngelHack-SP-2016/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Vencedor da premiação GS1 no AngelHack SP 2016
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/04/25/Desenvolvimento%20Android%20e%20iOS%20com%20.NET%20e%20Visual%20Studio/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Desenvolvimento Android e iOS com .NET e Visual Studio</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Criptografia/" rel="tag">Criptografia</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microservicos-NET-Arquitetura/" rel="tag">Microserviços .NET Arquitetura</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobile-NET-Android-iOS/" rel="tag">Mobile .NET Android iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NativeScript/" rel="tag">NativeScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Premiacao-Hackaton/" rel="tag">Premiação Hackaton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Seguranca-NET/" rel="tag">Segurança .NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blazor-net/" rel="tag">blazor .net</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/treinamento-NativeScript-Angular-Mobile/" rel="tag">treinamento NativeScript Angular+ Mobile</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Criptografia/" style="font-size: 10px;">Criptografia</a> <a href="/tags/Microservicos-NET-Arquitetura/" style="font-size: 10px;">Microserviços .NET Arquitetura</a> <a href="/tags/Mobile-NET-Android-iOS/" style="font-size: 10px;">Mobile .NET Android iOS</a> <a href="/tags/NativeScript/" style="font-size: 10px;">NativeScript</a> <a href="/tags/Premiacao-Hackaton/" style="font-size: 10px;">Premiação Hackaton</a> <a href="/tags/Seguranca-NET/" style="font-size: 10px;">Segurança .NET</a> <a href="/tags/blazor-net/" style="font-size: 10px;">blazor .net</a> <a href="/tags/treinamento-NativeScript-Angular-Mobile/" style="font-size: 10px;">treinamento NativeScript Angular+ Mobile</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">outubro 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">setembro 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">maio 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">abril 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">abril 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">setembro 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">abril 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">dezembro 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/10/04/Microservicos-NET-Arquitetura-para-aplicacoes-em-containers-com-NET/">Microserviços .NET: Arquitetura para aplicações em containers com .NET</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/10/Blazor-traz-de-volta-NET-aos-navegadores/">Blazor traz de volta .NET aos navegadores</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/25/Quao-facil-e-criar-um-plugin-para-NativeScript/">Quão facil é criar um plugin para NativeScript</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/21/Curso-NativeScript-Criando-um-novo-projeto-com-Angular-2/">Curso NativeScript: Criando um novo projeto com Angular 2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/18/Vencedor-da-premiacao-GS1-no-AngelHack-SP-2016/">Vencedor da premiação GS1 no AngelHack SP 2016</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a></br>
+All website licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></br>
+      
+      &copy; 2023 Douglas Zanco Franco<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
