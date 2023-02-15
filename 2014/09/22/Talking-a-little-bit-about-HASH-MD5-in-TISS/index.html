@@ -4,14 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Archives: 2017/10 | DZF Web Blog</title>
+  <title>Talking a little bit about HASH MD5 in TISS | DZF Web Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="DZF Web Blog">
-<meta property="og:url" content="http://www.dzfweb.com.br/archives/2017/10/index.html">
+  <meta name="description" content="I created this post with the intention of helping other developers who encountered the same difficulty that I encountered during the process of developing TISS modules and HASH MD5 validations.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Talking a little bit about HASH MD5 in TISS">
+<meta property="og:url" content="http://www.dzfweb.com.br/2014/09/22/Talking-a-little-bit-about-HASH-MD5-in-TISS/index.html">
 <meta property="og:site_name" content="DZF Web Blog">
+<meta property="og:description" content="I created this post with the intention of helping other developers who encountered the same difficulty that I encountered during the process of developing TISS modules and HASH MD5 validations.">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2014-09-22T18:05:43.000Z">
+<meta property="article:modified_time" content="2023-02-15T00:02:44.831Z">
 <meta property="article:author" content="Douglas Zanco Franco">
+<meta property="article:tag" content="cryptography">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@douglaszf">
   
@@ -76,39 +81,74 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/10/04/NET-Microservices-Architecture-for-Containerized-Applications-with-NET/" class="archive-article-date">
-  <time class="dt-published" datetime="2017-10-04T18:09:05.000Z" itemprop="datePublished">Oct 4</time>
+        <section id="main"><article id="post-Talking-a-little-bit-about-HASH-MD5-in-TISS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2014/09/22/Talking-a-little-bit-about-HASH-MD5-in-TISS/" class="article-date">
+  <time class="dt-published" datetime="2014-09-22T18:05:43.000Z" itemprop="datePublished">2014-09-22</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/04/NET-Microservices-Architecture-for-Containerized-Applications-with-NET/">.NET Microservices: Architecture for Containerized Applications with .NET</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Talking a little bit about HASH MD5 in TISS
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>I created this post with the intention of helping other developers who encountered the same difficulty that I encountered during the process of developing TISS modules and HASH MD5 validations.</p>
+<span id="more"></span>
+
+
+<p>To introduce the text, let’s go to definitions (well summarized):</p>
+<h2 id="What-is-TISS"><a href="#What-is-TISS" class="headerlink" title="What is TISS?"></a>What is TISS?</h2><p>_The TISS - Exchange of Information on Supplementary Health is a standard for recording and exchanging data between operators of private health care plans and medical-hospital service providers of the National Agency for Supplementary Health - ANS in Brazil.<br>_</p>
+<h2 id="What-is-MD5-Hash"><a href="#What-is-MD5-Hash" class="headerlink" title="What is MD5 Hash?"></a>What is MD5 Hash?</h2><p>MD5 (Message Digest algorithm 5) is a 128-bit unidirectional hashing algorithm developed by RSA Data Security, Inc., described in RFC 1321, and widely used by peer-to-peer (P2P) protocol software. -Peer), integrity checking of files and logins.</p>
+<h2 id="What-is-the-purpose-of-the-MD5-Hash-in-TISS"><a href="#What-is-the-purpose-of-the-MD5-Hash-in-TISS" class="headerlink" title="What is the purpose of the MD5 Hash in TISS?"></a>What is the purpose of the MD5 Hash in TISS?</h2><p>The exchange of communication between operators and providers in the Tiss webservices is carried out in well-structured and complex XML files. The MD5 Hash exists to guarantee the integrity of the file, since the contents of the XML elements are used to generate the Hash encryption. This guarantees that the file has not been changed manually, as a simple change of characters or whitespace, for example, would completely change the MD5 HASH of the file.</p>
+<h2 id="How-to-calculate-MD5-Hash-for-TISS"><a href="#How-to-calculate-MD5-Hash-for-TISS" class="headerlink" title="How to calculate MD5 Hash for TISS?"></a>How to calculate MD5 Hash for TISS?</h2><p>Concatenate the contents of all elements into a single String.<br>Remove whitespace ONLY at the beginning and end of the file.<br>Special characters, accents and dashes must be maintained.<br>MD5 encoding must be generated in UTF-8 standard.</p>
+<p>Example method to generate MD5 calculation for TISS in C# .NET</p>
+<p>Below is a simple method that I use to generate the MD5 Hash.</p>
+<h2 id="Method-to-generate-HashMD5"><a href="#Method-to-generate-HashMD5" class="headerlink" title="Method to generate HashMD5"></a>Method to generate HashMD5</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static string getMD5Hash(string input)</span><br><span class="line">&#123;</span><br><span class="line">    System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create();</span><br><span class="line">    byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(input);</span><br><span class="line">    byte[] hash = md5.ComputeHash(inputBytes);</span><br><span class="line">    System.Text.StringBuilder sb = new System.Text.StringBuilder();</span><br><span class="line">    for (int i = 0; i &lt; hash.Length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        sb.Append(hash[i].ToString(&quot;x2&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">    return sb.ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.dzfweb.com.br/2014/09/22/Talking-a-little-bit-about-HASH-MD5-in-TISS/" data-id="cle4wwul7001azsud8rtv9gte" data-title="Talking a little bit about HASH MD5 in TISS" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptography/" rel="tag">cryptography</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/18/GS1%20Award-Winner-at-AngelHack-SP-2016/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          GS1 Award Winner at AngelHack SP 2016
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/04/25/Android-and-iOS-development-with-.NET-and-Visual-Studio/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android and iOS development with .NET and Visual Studio</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

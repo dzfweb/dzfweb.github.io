@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>How easy is it to create a plugin for NativeScript? | DZF Web Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="There is a growing number of plugins available for NativeScript that are developed by the community, and the reason for this is not only the willingness and sense of contribution from developers, but">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How easy is it to create a plugin for NativeScript?">
+<meta property="og:url" content="http://www.dzfweb.com.br/2017/05/25/How-easy-is-it-to-create-a-plugin-for-NativeScript/index.html">
+<meta property="og:site_name" content="DZF Web Blog">
+<meta property="og:description" content="There is a growing number of plugins available for NativeScript that are developed by the community, and the reason for this is not only the willingness and sense of contribution from developers, but">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/dzfweb/nativescript-emoji/master/emojiprintscreen.png">
+<meta property="article:published_time" content="2017-05-25T18:08:36.000Z">
+<meta property="article:modified_time" content="2023-02-15T00:02:17.298Z">
+<meta property="article:author" content="Douglas Zanco Franco">
+<meta property="article:tag" content="NativeScript">
+<meta property="article:tag" content="plugin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dzfweb/nativescript-emoji/master/emojiprintscreen.png">
+<meta name="twitter:creator" content="@douglaszf">
+  
+    <link rel="alternate" href="/atom.xml" title="DZF Web Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">DZF Web Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Douglas Zanco Franco - Web Site</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.dzfweb.com.br"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-How-easy-is-it-to-create-a-plugin-for-NativeScript" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/05/25/How-easy-is-it-to-create-a-plugin-for-NativeScript/" class="article-date">
+  <time class="dt-published" datetime="2017-05-25T18:08:36.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      How easy is it to create a plugin for NativeScript?
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>There is a growing number of plugins available for NativeScript that are developed by the community, and the reason for this is not only the willingness and sense of contribution from developers, but also the ease of developing a plugin for NativeScript, especially after version 3.0.</p>
+<span id="more"></span>
+
+
+<p>In this article, I’ll demonstrate how I developed NativeScript Emoji, my first UI Plugin for NativeScript. By the end of this article, I hope you’ll be interested in you the interest in developing a plugin and contributing to the community of NativeScript developers, everyone wins when this happens!.</p>
+<h2 id="Por-onde-comecar"><a href="#Por-onde-comecar" class="headerlink" title="Por onde começar?"></a>Por onde começar?</h2><p>I will demonstrate the basics that you need to know to get started, but if you prefer, the complete documentation can be found here.</p>
+<p>The easiest way to get a plugin for NativeScript is to use the NativeScript Plugin Seed, created by NathanWalker. This library will do all the hard work of creating the structure of a NativeScript plugin, and that’s really amazing. See how easy it is:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/NathanWalker/nativescript-plugin-seed.git myplugin</span><br><span class="line">cd myplugin</span><br><span class="line">npm run postclone</span><br><span class="line">npm run setup</span><br></pre></td></tr></table></figure>
+
+<p>Now, with just these steps you will have created all the necessary structure to develop, test and publish your plugin, but before you start, let’s make a brief introduction about the plugin we are going to develop together in this article.</p>
+<h2 id="O-plugin-NativeScript-Emoji"><a href="#O-plugin-NativeScript-Emoji" class="headerlink" title="O plugin NativeScript Emoji"></a>O plugin NativeScript Emoji</h2><p>The purpose of this plugin is to deliver an element to the interface to display Emojis in a friendly way. My initial idea was to have a TextView element. When setting the unicode or hexadecimal value of emoji in the corresponding property:</p>
+<p><code>&lt;Emoji:Emoji icon=&quot;128514&quot;&gt;</code> exibir :😂</p>
+<p>The plugin would do the conversion to Emoji, and here I leave a highlight again for the NativeScript community in Slack (Haven’t joined us yet? Sign up now), which made the excellent suggestion to replace the unicode property with a friendlier and easier-to-remember value:</p>
+<p><code>&lt;Emoji:Emoji name=&quot;joy&quot;&gt;</code> exibir :😂</p>
+<h2 id="Implementacao-para-Android-e-iOS"><a href="#Implementacao-para-Android-e-iOS" class="headerlink" title="Implementação para Android e iOS"></a>Implementação para Android e iOS</h2><p>Now that we already have the definition of the plugin and the structure created, get started. The first thing we need to do is define the common implementation across platforms, we know that we will have a name property that will serve both Android and iOS, this setting is made in the common file that was generated in the first step of this article .</p>
+<p><em>emoji.common.ts</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import &#123; View, Property &#125; from &quot;ui/core/view&quot;;</span><br><span class="line">export class EmojiCommon extends View &#123;</span><br><span class="line">  name: string;</span><br><span class="line">&#125;</span><br><span class="line">export const nameProperty = new Property&lt;EmojiCommon, string&gt;(</span><br><span class="line">  &#123;</span><br><span class="line">    name: &quot;name&quot;,</span><br><span class="line">    defaultValue: &quot;&quot;</span><br><span class="line">  &#125;);</span><br><span class="line">nameProperty.register(EmojiCommon);</span><br></pre></td></tr></table></figure>
+
+<p>As this is an ui plugin, we need to extend the View class. The attributes of the element that we will create, we define creating a new object of type Property.</p>
+<p>The property name we define the name of the attribute and the default value of it, as the name itself suggests, we define the property defaultValue. If the value of this attribute were different from the type string, which is not our case, we would need to set the value for the property valueConverter.</p>
+<p>The emojis encoding is distinct for each platform, so we need to have a database to store those values to query during the execution of the plugin.</p>
+<p><em>emoji.database.ts</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export class EmojiDatabase &#123;</span><br><span class="line">    public static list(): Array&lt;any&gt; &#123;</span><br><span class="line">      return [</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;name&quot;: &quot;FACE WITH TEARS OF JOY&quot;,</span><br><span class="line">        &quot;unicode&quot;: &quot;😂&quot;,</span><br><span class="line">        &quot;hexcode&quot;: &quot;1F602&quot;,</span><br><span class="line">        &quot;codepoint&quot;: [</span><br><span class="line">            128514</span><br><span class="line">        ],</span><br><span class="line">        &quot;shortname&quot;: &quot;joy&quot;</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Implementacao-para-Android"><a href="#Implementacao-para-Android" class="headerlink" title="Implementação para Android"></a>Implementação para Android</h2><p>Now that we have the attributes of the element that we will create, we need to implement the code responsible for generating the element corresponding to each platform. NativeScript will interpret the specific code for Android at runtime through the following file.</p>
+<p><em>emoji.android.ts</em> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import &#123; nameProperty, EmojiCommon &#125; from &quot;./emoji.common&quot;;</span><br><span class="line">import &#123; EmojiDatabase &#125; from &quot;./emoji.database&quot;;</span><br><span class="line">import * as utils from &quot;tns-core-modules/utils/utils&quot;;</span><br><span class="line">declare var java: any;</span><br><span class="line">global.moduleMerge(EmojiCommon, exports);</span><br><span class="line">export class Emoji extends EmojiCommon &#123;</span><br><span class="line">  [nameProperty.getDefault](): string &#123;</span><br><span class="line">    return &#x27;&#x27;;</span><br><span class="line">  &#125;</span><br><span class="line">  [nameProperty.setNative](value: string) &#123;</span><br><span class="line">    let emoji = EmojiDatabase.list().find((el) =&gt; el.shortname ##= value).codepoint[0];</span><br><span class="line">    this.nativeView.setText(new java.lang.String(java.lang.Character.toChars(emoji)));</span><br><span class="line">  &#125;</span><br><span class="line">  private _android: android.widget.TextView;</span><br><span class="line">  get android() &#123;</span><br><span class="line">    return this.nativeView;</span><br><span class="line">  &#125;</span><br><span class="line">  public createNativeView() &#123;</span><br><span class="line">    this._android = new android.widget.TextView(utils.ad.getApplicationContext());</span><br><span class="line">    return this._android;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The first step is to extend the common class created earlier. You must implement the createNativeView method too, which will make NativeScript understand that some element must be created in the View. In our case we will create a TextView.</p>
+<p>And again here we have another great help from the framework, the NativeScript team has mapped all the native properties and methods of each platform and generated the definitions in TypeScript, which gives us the possibility to navigate through all these native definitions directly in the editor.</p>
+<p>We must also define what the plugin will do when it receives the attribute name, this is defined by implementing the setNative method, which in our case will query the emoji name in the database, and based on the corresponding code, It will set the value for the previously created TextView. The getDefault method is for cases where no value is set.</p>
+<h2 id="Implementacao-para-iOS"><a href="#Implementacao-para-iOS" class="headerlink" title="Implementação para iOS"></a>Implementação para iOS</h2><p>We can copy the same implementation made for Android, and only change the parts where it is created and set the value for the native element, which in the case of iOS will be the UILabel setting as follows.</p>
+<p><em>emoji.ios.ts</em> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import &#123; nameProperty, EmojiCommon &#125; from &quot;./emoji.common&quot;;</span><br><span class="line">import &#123; EmojiDatabase &#125; from &quot;./emoji.database&quot;;</span><br><span class="line">global.moduleMerge(EmojiCommon, exports);</span><br><span class="line">export class Emoji extends EmojiCommon &#123;</span><br><span class="line">  [nameProperty.getDefault](): number &#123;</span><br><span class="line">    return 0;</span><br><span class="line">  &#125;</span><br><span class="line">  [nameProperty.setNative](value: string) &#123;</span><br><span class="line">    let emoji = EmojiDatabase.list().find((el) =&gt; el.shortname ##= value).unicode;</span><br><span class="line">    let nsString = NSString.stringWithString(emoji);</span><br><span class="line">    this.nativeView.text = nsString;</span><br><span class="line">  &#125;</span><br><span class="line">  private _ios: UILabel;</span><br><span class="line">  get ios() &#123;</span><br><span class="line">    return this.nativeView;</span><br><span class="line">  &#125;</span><br><span class="line">  public createNativeView() &#123;</span><br><span class="line">    this._ios = UILabel.alloc().init();</span><br><span class="line">    return this._ios;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Here again it will be possible to access the definition of the native methods for iOS, in the createNativeView method a UILabel is created and in the setNative method the value for the created element is defined.</p>
+<h2 id="Testando-o-plugin"><a href="#Testando-o-plugin" class="headerlink" title="Testando o plugin"></a>Testando o plugin</h2><p>Yes, we finished the plugin implementation and what is left is just testing. Realy fast, dont you think? To test we need to add the plugin to the demo project created in the initial steps of this article. To do this, you must execute the command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run preparedemo</span><br></pre></td></tr></table></figure>
+
+<p>Add the element reference in the Page element of the main-page.xml file</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlns:Emoji=&quot;nativescript-emoji&quot;</span><br></pre></td></tr></table></figure>
+
+<p>And then add the element within the StackLayout</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Emoji:Emoji name=&quot;joy&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Stating as follows:</p>
+<p><em>main-page.xml</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;Page xmlns=&quot;http://schemas.nativescript.org/tns.xsd&quot; xmlns:Emoji=&quot;nativescript-emoji&quot; navigatingTo=&quot;navigatingTo&quot; class=&quot;page&quot;&gt;</span><br><span class="line">  </span><br><span class="line">    &lt;Page.actionBar&gt;</span><br><span class="line">        &lt;ActionBar title=&quot;NativeScript Emoji&quot; icon=&quot;&quot; class=&quot;action-bar&quot;&gt;</span><br><span class="line">        &lt;/ActionBar&gt;</span><br><span class="line">    &lt;/Page.actionBar&gt;</span><br><span class="line">    &lt;StackLayout orientation=&quot;horizontal&quot;&gt;</span><br><span class="line">        &lt;Label text=&quot;I&#x27;m happy &quot;&gt; &lt;/Label&gt;</span><br><span class="line">        &lt;Emoji:Emoji name=&quot;joy&quot; /&gt;</span><br><span class="line">        &lt;Emoji:Emoji name=&quot;joy&quot; /&gt;</span><br><span class="line">        &lt;Emoji:Emoji name=&quot;joy&quot; /&gt;</span><br><span class="line">    &lt;/StackLayout&gt;</span><br><span class="line">&lt;/Page&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Now let’s run the demo project on the emulators of each platform by executing the following commands.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nmm run demo.ios</span><br><span class="line">npm run demo.android</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/dzfweb/nativescript-emoji/master/emojiprintscreen.png" alt="image"></p>
+<h2 id="Conclusao"><a href="#Conclusao" class="headerlink" title="Conclusão"></a>Conclusão</h2><p>Hopefully you can see how fast and easy it is to develop a plugin for NativeScript, the community is very open to helping as well, as well as the Telerik team that seeks to deliver with each version tools that vision make our work as a developer much more productive and i throw the invitation to you developer who is reading this article, did you develop something customized on any project? Do you have any ideas about any tools that might be useful? Contribute with us as well.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.dzfweb.com.br/2017/05/25/How-easy-is-it-to-create-a-plugin-for-NativeScript/" data-id="cle4wwukt0006zsud2vny96ne" data-title="How easy is it to create a plugin for NativeScript?" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NativeScript/" rel="tag">NativeScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/plugin/" rel="tag">plugin</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/10/Blazor-brings-.NET-back-to-browsers/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Blazor brings .NET back to browsers
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/21/NativeScript%20Course-Creating-a-New-Project-with-Angular-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">NativeScript Course: Creating a New Project with Angular 2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/net/" rel="tag">.net</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/" rel="tag">Angular+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobile/" rel="tag">Mobile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NativeScript/" rel="tag">NativeScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/architecture/" rel="tag">architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awards/" rel="tag">awards</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blazor/" rel="tag">blazor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/courses/" rel="tag">courses</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cryptography/" rel="tag">cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hackaton/" rel="tag">hackaton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/microservices/" rel="tag">microservices</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/" rel="tag">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 20px;">.NET</a> <a href="/tags/net/" style="font-size: 10px;">.net</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Angular/" style="font-size: 10px;">Angular+</a> <a href="/tags/Mobile/" style="font-size: 15px;">Mobile</a> <a href="/tags/NativeScript/" style="font-size: 15px;">NativeScript</a> <a href="/tags/architecture/" style="font-size: 10px;">architecture</a> <a href="/tags/awards/" style="font-size: 10px;">awards</a> <a href="/tags/blazor/" style="font-size: 10px;">blazor</a> <a href="/tags/courses/" style="font-size: 10px;">courses</a> <a href="/tags/cryptography/" style="font-size: 10px;">cryptography</a> <a href="/tags/hackaton/" style="font-size: 10px;">hackaton</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/microservices/" style="font-size: 10px;">microservices</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/security/" style="font-size: 10px;">security</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/10/04/NET-Microservices-Architecture-for-Containerized-Applications-with-NET/">.NET Microservices: Architecture for Containerized Applications with .NET</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/10/Blazor-brings-.NET-back-to-browsers/">Blazor brings .NET back to browsers</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/25/How-easy-is-it-to-create-a-plugin-for-NativeScript/">How easy is it to create a plugin for NativeScript?</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/21/NativeScript%20Course-Creating-a-New-Project-with-Angular-2/">NativeScript Course: Creating a New Project with Angular 2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/18/GS1%20Award-Winner-at-AngelHack-SP-2016/">GS1 Award Winner at AngelHack SP 2016</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+        <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a></br>
+All website licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></br>
+      
+      &copy; 2023 Douglas Zanco Franco<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
