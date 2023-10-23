@@ -6,7 +6,7 @@
   <link href="http://www.dzfweb.com.br/atom.xml" rel="self"/>
   
   <link href="http://www.dzfweb.com.br/"/>
-  <updated>2023-10-23T20:16:25.169Z</updated>
+  <updated>2023-10-23T21:11:55.197Z</updated>
   <id>http://www.dzfweb.com.br/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>My AI toolkit for boost my dev productivity</title>
+    <link href="http://www.dzfweb.com.br/2023/10/23/My-AI-toolkit-for-boost-my-dev-productivity/"/>
+    <id>http://www.dzfweb.com.br/2023/10/23/My-AI-toolkit-for-boost-my-dev-productivity/</id>
+    <published>2023-10-23T20:33:23.000Z</published>
+    <updated>2023-10-23T21:11:55.197Z</updated>
+    
+    <content type="html"><![CDATA[<p>As a developer, I’m always looking for ways to boost my productivity. And it turns out that I’m not alone. According to recent research, AI tools like GitHub Copilot and Tactiq can have a significant impact on developer productivity.</p><span id="more"></span><h2 id="AI-Productivity-Research"><a href="#AI-Productivity-Research" class="headerlink" title="AI Productivity Research"></a>AI Productivity Research</h2><p>One study found that the quality of the code authored and reviewed was better across the board with GitHub Copilot Chat enabled, even though none of the developers had used the feature before.</p><ul><li>85% of developers felt more confident in their code quality when authoring code with GitHub Copilot and GitHub Copilot Chat.</li><li>Code reviews were more actionable and completed 15% faster with GitHub Copilot Chat.</li><li>88% of developers reported maintaining flow state with GitHub Copilot Chat because they felt more focused, less frustrated, and enjoyed coding more, too.</li></ul><p><img src="/images/github-copilot-research.png"></p><p><a href="https://github.blog/2023-10-10-research-quantifying-github-copilots-impact-on-code-quality/">https://github.blog/2023-10-10-research-quantifying-github-copilots-impact-on-code-quality/</a></p><p>So, it’s clear that AI tools have a lot of potential when it comes to boosting developer productivity. And two of the tools that I’ve found to be particularly helpful are GitHub Copilot and Tactiq.</p><h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2><p>GitHub Copilot is an AI programming assistant that has been a game-changer when it comes to coding. With Copilot, I can quickly generate code snippets and get suggestions for how to complete functions and methods. It’s like having a coding partner who’s always there to help me out.</p><p>When I’m working on a new project, I’ll often use Copilot to generate some starter code. This saves me a lot of time and helps me get up and running quickly. And if I’m stuck on a particular piece of code, I’ll use Copilot to get suggestions for how to complete it. This has been incredibly helpful when I’m working with a new language or framework.</p><h3 id="Smart-Auto-complete"><a href="#Smart-Auto-complete" class="headerlink" title="Smart Auto-complete"></a>Smart Auto-complete</h3><p>One of the key features that sets Copilot apart is its smart auto-complete functionality. With this feature, Copilot can suggest code snippets and complete functions and methods based on the context of your code. This saves you time and helps you write code more efficiently.</p><p><img src="/images/My-AI-toolset-for-boost-my-dev-productivity/1.gif"></p><h3 id="Code-generation"><a href="#Code-generation" class="headerlink" title="Code generation"></a>Code generation</h3><p>Another powerful feature of Copilot is its code generation capability. With Copilot, you can quickly generate code for common tasks like file I&#x2F;O, string manipulation, and more. This feature is particularly helpful when you’re working with a new language or framework and need to get up and running quickly.</p><p><img src="/images/My-AI-toolset-for-boost-my-dev-productivity/2.gif"></p><h3 id="Test-generation"><a href="#Test-generation" class="headerlink" title="Test generation"></a>Test generation</h3><p>Finally, Copilot also has a test generation feature that can help you write better code. With this feature, Copilot can generate test cases for your code, ensuring that it’s working as expected and reducing the likelihood of bugs. This feature is especially useful for developers who are new to testing or who want to improve their testing practices.</p><p><img src="/images/My-AI-toolset-for-boost-my-dev-productivity/3.gif"></p><h2 id="Tactiq"><a href="#Tactiq" class="headerlink" title="Tactiq"></a>Tactiq</h2><p>Another tool that I’ve found incredibly helpful is Tactiq. This tool is perfect for anyone who spends a lot of time in meetings. With Tactiq, I can easily transcribe meetings and keep track of important details. It’s a great way to stay organized and make sure that I don’t miss anything important.</p><p>During meetings, I’ll use Tactiq to transcribe what’s being said. This helps me stay focused and ensures that I don’t miss any important details. Plus, I can easily refer back to the transcript later if I need to.</p><p><img src="/images/My-AI-toolset-for-boost-my-dev-productivity/tactiq.png"></p><p>Another cool feature of Tactiq (which I believe uses gpt-4 behind the scenes) is the ability to generate action points.</p><p>Overall, Tactiq has been a huge help in keeping me organized and productive. And I highly recommend it to anyone who spends a lot of time in meetings.</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;As a developer, I’m always looking for ways to boost my productivity. And it turns out that I’m not alone. According to recent research, AI tools like GitHub Copilot and Tactiq can have a significant impact on developer productivity.&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Certificates" scheme="http://www.dzfweb.com.br/tags/Certificates/"/>
+    
+    <category term="AI" scheme="http://www.dzfweb.com.br/tags/AI/"/>
+    
+    <category term="Artificial Intelligence" scheme="http://www.dzfweb.com.br/tags/Artificial-Intelligence/"/>
+    
+  </entry>
   
   <entry>
     <title>New certificates AI certificates</title>
